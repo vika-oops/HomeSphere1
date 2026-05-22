@@ -1,0 +1,48 @@
+const sendEmail = async (options) => {
+  try {
+    const BREVO_API_KEY = process.env.BREVO_API_KEY?.trim();
+    const EMAIL_USER = process.env.EMAIL_USER?.trim();
+
+    if (!BREVO_API_KEY) {
+      console.error("Missing BREVO_API_KEY in the .env file");
+      throw new Error("missing Email Api Key");
+    }
+
+    const data = {
+      sender: {
+        name: "HomeSphere Platform",
+        email: EMAIL_USER,
+      },
+      to: [{ email: options.email }],
+      subject: options.subject,
+      htmlContent: options.message,
+    };
+
+    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        "api-key": BREVO_API_KEY,
+        "content-type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      console.log("Email sent successfully via Brevo:", result.messageId);
+      return result;
+    } else {
+      console.error("Brevo API Key Error:", result);
+      throw new Error(
+        result?.message || "Could not send the email via Brevo"
+      );
+    }
+  } catch (error) {
+    console.error("Brevo Email Error:", result);
+    throw new Error( "Could not send the email via Brevo");
+  }
+};
+
+export default sendEmail;

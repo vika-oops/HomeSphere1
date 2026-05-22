@@ -1,0 +1,14 @@
+{
+  "watch": [
+    "server.js",
+    "./**/*.js"
+  ],
+  "ignore": [
+    "node_modules/**"
+  ],
+  "ext": "js,json",
+  "exec": "node server.js",
+  "restartable": "rs",
+  "delay": "200"
+}
+
