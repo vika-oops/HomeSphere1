@@ -94,7 +94,7 @@ export const login = async (req, res) => {
 //to get profile
   export const getMe = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select(".password");
+    const user = await User.findById(req.user.id).select("-password");
 
     if (!user) {
       return res.status(404).json({ message: 'No user found ' });
@@ -140,7 +140,7 @@ export const verifyEmail = async (req, res) => {
     }
 
     // compare verification code
-    if (string(user.verificationToken) !== String(verificationCode)) {
+    if (String(user.verificationToken) !== String(verificationCode)) {
       return res.status(400).json({
         message: 'Invalid verification code',
         success: false,

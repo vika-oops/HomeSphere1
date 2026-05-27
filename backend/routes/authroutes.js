@@ -5,6 +5,7 @@ import {
   forgotPassword,
   resetPassword,
   verifyEmail,
+  getMe,
 } from '../controllers/authcontroller.js';
 import { protect } from '../middlewares/authmiddleware.js';
 
@@ -14,8 +15,8 @@ authRouter.post('/register', register);
 authRouter.post('/login', login);
 
 
-authRouter.get('/me', protect);
-authRouter.post('/verifyemail', verifyEmail);
+authRouter.get('/me', protect, getMe);
+authRouter.post('/verify-email', verifyEmail);
 
 authRouter.post('/forgot-password', forgotPassword);
 authRouter.post('/reset-password/:token', resetPassword);
