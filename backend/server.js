@@ -5,6 +5,8 @@ import http from 'http';
 import { connectDB } from './config/db.js';
 import authRouter from './routes/authroutes.js';
 import userRouter from './routes/user routes.js';
+import propertyRouter from './routes/propertyroutes.js';
+import inquiryRouter from './routes/inquiryroutes.js';
 
 dotenv.config();
 
@@ -22,7 +24,9 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
- app.get('/', (req, res) => {
+app.use("/api/property",propertyRouter);
+app.use("/api/inquiry", inquiryRouter);
+app.get('/', (req, res) => {
     res.send('API WORKING');
   });
 
