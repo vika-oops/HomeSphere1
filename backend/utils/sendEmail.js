@@ -40,7 +40,7 @@ const sendEmail = async (options) => {
       );
     }
   } catch (error) {
-    console.error("Brevo Email Error:", result);
+    console.error("Brevo Email Error:", error.message);
     throw new Error( "Could not send the email via Brevo");
   }
 };

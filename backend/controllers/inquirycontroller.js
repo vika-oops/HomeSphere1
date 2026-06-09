@@ -5,9 +5,9 @@ import BusinessProfile from "../models/businessProfile.js";
 // buyer sends inquiry
 export const sendInquiry = async (req, res) => {
 try {
-  
+
 const { propertyId, message } = req.body;
-const property = await Property.findById(propertyId).populate("seller");
+const property = await Property.findById(propertyId);
 
 if (!property) {
   return res.status(404).json({

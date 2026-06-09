@@ -1,27 +1,27 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const businessProfileSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
       required: true,
     },
 
     businessType: {
       type: String,
       enum: [
-        'interior_designer',
-        'airbnb_host',
-        'architect',
-        'landlord',
-        'real_estate_agent',
-        'property_manager',
-        'construction_company',
-        'skilled_worker',
-        'furniture_decor_business',
-        'moving_transport_service',
-        'internet_utilities_provider',
+        "interior_designer",
+        "airbnb_host",
+        "architect",
+        "landlord",
+        "real_estate_agent",
+        "property_manager",
+        "construction_company",
+        "skilled_worker",
+        "furniture_decor_business",
+        "moving_transport_service",
+        "internet_utilities_provider",
       ],
       required: true,
     },
@@ -54,6 +54,12 @@ const businessProfileSchema = new mongoose.Schema(
       },
     ],
 
+    status: {
+      type: String,
+      enum: ["pending", "approved", "rejected", "blocked"],
+      default: "pending",
+    },
+
     isApproved: {
       type: Boolean,
       default: false,
@@ -69,6 +75,4 @@ const businessProfileSchema = new mongoose.Schema(
   }
 );
 
-const BusinessProfile = mongoose.model('BusinessProfile', businessProfileSchema);
-
-export default BusinessProfile;
+export default mongoose.model("BusinessProfile", businessProfileSchema);

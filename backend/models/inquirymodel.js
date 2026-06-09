@@ -7,10 +7,20 @@ const inquirySchema = new mongoose.Schema({
         required: true
     },
 
+    businessProfile: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "BusinessProfile"
+},
+
     buyer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true
+    },
+    
+    seller:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     },
     
     message: {

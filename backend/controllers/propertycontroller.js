@@ -64,6 +64,7 @@ export const getMyProperties = async (req, res) => {
     });
     res.json({
       success: true,
+      count:properties.length,
       properties,
     });
   } catch (error) {
